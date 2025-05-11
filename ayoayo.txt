@@ -1,10 +1,13 @@
+Initial Reflection:
+
 When I first approached the Ayoayo game implementation, my goal was to model the game mechanics accurately while adhering to the specified rules. I began by breaking down the problem into components:
 
-1.Class Structure: I decided to separate concerns by creating a `Player` class to manage individual player data (pits and store) and an `Ayoayo` class to handle game logic. This ensured encapsulation and clarity.
-2. **Game State**: I focused on tracking the board state, including seeds in pits and stores, and validating moves.
-3. **Special Rules**: I identified the two critical rules (extra turns and captures) as core challenges requiring precise state management.
+1. Class Structure: I decided to separate concerns by creating a `Player` class to manage individual player data (pits and store) and an `Ayoayo` class to handle game logic. This ensured encapsulation and clarity.
+2. Game State: I focused on tracking the board state, including seeds in pits and stores, and validating moves.
+3. Special Rules: I identified the two critical rules (extra turns and captures) as core challenges requiring precise state management.
 
 My initial plan involved:
+
 - Using arrays to represent pits and integers for stores.
 - Implementing a method (`playGame`) to distribute seeds and apply rules.
 - Validating input indices and game termination conditions.
@@ -12,8 +15,9 @@ My initial plan involved:
 Final Reflection:
 
 Challenges and Adjustments:
-1. **Sowing Order**:  
-   Implementing counter-clockwise sowing was complex. I used a *generator function* (`sowingOrder`) to iterate through pits and stores in the correct order, ensuring seeds skipped the opponent’s store. This required careful indexing and handling of player turns.
+
+1. Sowing Order:  
+   Implementing counter-clockwise sowing was complex. I used a _generator function_ (`sowingOrder`) to iterate through pits and stores in the correct order, ensuring seeds skipped the opponent’s store. This required careful indexing and handling of player turns.
 
 2. Capture Rule:  
    Capturing seeds required checking if the last seed landed in an empty pit on the player’s side. I tracked the `lastPos` during sowing and used it to trigger captures, ensuring both the current pit and the opponent’s opposite pit were cleared.
@@ -25,13 +29,20 @@ Challenges and Adjustments:
    Detecting when all pits on one side were empty required iterating through the pits and transferring remaining seeds to the respective store. This ensured compliance with the endgame rule.
 
 Key Takeaways:
+
 1. Modular Design: Separating `Player` and `Ayoayo` classes improved readability and maintainability. Private data members enforced encapsulation.
 2. State Management: Tracking the board state accurately was critical for applying rules. The generator function simplified the sowing logic.
 3. Testing Edge Cases: Thoroughly testing scenarios like empty pits, consecutive captures, and game termination helped identify and fix subtle bugs.
 
 Code Quality:
+
 - Readability: Descriptive variable names (e.g., `sowingOrder`, `lastPos`) and structured methods enhanced clarity.
--Error Handling: Input validation for invalid pit indices and empty pits ensured robustness.
+- Error Handling: Input validation for invalid pit indices and empty pits ensured robustness.
+- Efficiency: The generator function avoided redundant loops, making seed distribution efficient.
+
+Conclusion:
+The final implementation faithfully adheres to the Ayoayo rules, handling all specified mechanics. The reflection process highlighted the importance of modular design and thorough testing in game development. This project deepened my understanding of state management and rule-based systems in programming.
+
 - Efficiency: The generator function avoided redundant loops, making seed distribution efficient.
 
 Conclusion:
